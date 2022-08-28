@@ -1,27 +1,42 @@
+import axios from './axios';
+import { useEffect, useState } from 'react';
+import requests from './Requests';
 import './Banner.css';
 
 const Banner = ()  =>{
 
-    const truncate = (string,n=150) => string?.length > n ? string.substr(0,n-1) + '...' : string
+    const [movie,setMovie] = useState([]);
+
+    useEffect(() =>{
+        async function fetchData(){
+            const request = await axios.get(requests.fetchNetflixOriginals);
+            setMovie(request.data.results[Math.floor(Math.random() * request.data.results.length - 1)]);
+            return request;
+        }
+        fetchData();
+    },[]);
+
+    const truncate = (str,n=150) => str?.length > n ? str.substr(0,n-1) + '...' : str
+
+
+    console.log(movie);
 
     return(
         <header className="banner" style={{
             backgroundSize: "cover",
             //backgroundImage: `url("/netflix_banner.jpeg")`,
-            backgroundImage: `url("/back_banner.png")`,
+            backgroundImage: `url("https://image.tmdb.org/t/p/original/${movie?.backdrop_path}")`,
             backgroundPosition: "center"
         }}>
             <div className='banner__contents'>
-                <h1 className='banner__title'>Movie Name</h1>
+                <h1 className='banner__title'>{movie?.title || movie?.name || movie?.original_name}</h1>
                 <div className='banner__buttons'>
                     <button className='banner__button'>Play</button>
                     <button className='banner__button'>My List</button>
                 </div>
                 <h1 className='banner_description'>
-                    {
-                        truncate("Minim culpa commodo officia eu laboris labore commodo. Ad eu culpa deserunt mollit Lorem occaecat in dolor. Ad pariatur velit aute amet cillum exercitation eiusmod eu sit voluptate sit reprehenderit consectetur. Commodo ad cillum esse aute fugiat esse quis. Aliqua laborum sit sint non ipsum elit.Aute exercitation incididunt aliquip tempor. Labore cillum duis occaecat reprehenderit voluptate. Non voluptate officia officia est aute. Commodo non elit officia excepteur cupidatat irure nulla laboris ex ullamco. Anim do exercitation enim ad deserunt laborum aliqua duis duis commodo. Aute veniam ad sunt aliquip consectetur dolore laboris cupidatat aliquip.")
-                    }
-                    </h1>
+                    { truncate(movie?.overview) }
+                </h1>
             </div>
             <div className='banner--fadeBottom'/>
         </header>
