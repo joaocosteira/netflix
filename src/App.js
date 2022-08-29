@@ -10,22 +10,32 @@ import {
 import LoginScreen from './screens/LoginScreen';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from './firebase';
+import { useDispatch, useSelector } from 'react-redux';
+import { login, logout, selectUser } from './features/userSlice';
 
 
 function App() {
 
-
-  const user = null;
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
 
   useEffect(()=>{
-    onAuthStateChanged(auth, (userAuth) => {
-      if(userAuth){
-        console.log(userAuth)
-      }else{
-        
-      }
 
-    })
+    const unsubscribe = onAuthStateChanged(auth,
+
+      (userAuth) => {
+        if(userAuth){
+          dispatch(login({
+            uid : userAuth.uid,
+            email : userAuth.email, 
+          }));
+        }else{
+          dispatch(logout);
+        }
+      });
+
+    return unsubscribe;
+
   },[]);
 
   return (
