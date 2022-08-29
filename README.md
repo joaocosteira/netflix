@@ -1,6 +1,8 @@
 # Netflix Clone Project
 This repository is part of a [tutorial series](https://www.youtube.com/watch?v=CLMo0W7mTVo&list=PLf16UKl7nR5DaxECWIwHr82oXtQWgI4Ri&index=1) where a simple Netflix clone is built. This project is purely for educational purposes. **Not used as a mechanism to scam nor to impersonate the real Netflix.**
 
+![example gif](https://github.com/joaocosteira/netflix/blob/main/readmed_imgs/output.gif)
+
 ## Tecnologies Used:
 - React
 - [themoviedb.org](https://www.themoviedb.org)
