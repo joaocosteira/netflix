@@ -20,7 +20,9 @@ const ProfileScreen =  () => {
                         <h2>{user.email}</h2>
                         <div className='profileScreen__plans'>
                             <h3>Plans (Current Plan: Premium)</h3>
-
+                            <div className='profileScreen__plansRow'>
+                                <p>Renewal Date: 30/02/2023</p>
+                            </div>
                             <div className='profileScreen__plansRow'>
                                 <div>
                                     <p>Netflix Standard</p>
