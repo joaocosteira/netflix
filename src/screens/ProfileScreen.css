@@ -63,3 +63,31 @@
     border: none;
     cursor: pointer;
 }
+
+.profileScreen__plansRow{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    color: gray;
+}
+
+.profileScreen__plansRow > button{
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 5%;
+    color: #fff;
+    background-color: #e50914;
+    border: none;
+    cursor: pointer;
+}
+
+.planSelected{
+    color :white;
+}
+
+.planSelected > button {
+    background-color: gray;
+    font-weight: bold;
+}
